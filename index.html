@@ -163,6 +163,405 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/18/neural-network/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Mududu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mududu">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/18/neural-network/" class="post-title-link" itemprop="url">neural-network</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-10-18 14:30:26 / 修改时间：14:38:05" itemprop="dateCreated datePublished" datetime="2022-10-18T14:30:26+08:00">2022-10-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><h2 id="1-神经网络初探"><a href="#1-神经网络初探" class="headerlink" title="1 神经网络初探"></a>1 神经网络初探</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 利用numpy生成随机数模拟输入神经网络的数据</span></span><br><span class="line">X = np.random.randint(<span class="number">0</span>, <span class="number">5</span>, size=(<span class="number">500</span>, <span class="number">500</span>))  <span class="comment"># X:数据集的样本特征,共有有效数据500条,每条数据500个特征</span></span><br><span class="line">Y = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, size=(<span class="number">1</span>, <span class="number">500</span>))  <span class="comment"># y:数据集的样本标签,500条有效数据，每条对应一个标签，共有500个标签</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sigmoid</span>(<span class="params">z</span>):</span><br><span class="line">    s = <span class="number">1</span> / (<span class="number">1</span>+np.exp(-z))</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"><span class="comment"># 本函数为权重参数初始化函数</span></span><br><span class="line"><span class="comment"># 自行决定初始化参数的方式（例如：全零初始化，随机初始化等）</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">initial_parameters</span>(<span class="params">in_, out_</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    in_ : 输入层神经元个数</span></span><br><span class="line"><span class="string">    out_: 输出层神经元个数</span></span><br><span class="line"><span class="string">    w: 权重参数weights</span></span><br><span class="line"><span class="string">    b: 偏置参数bias</span></span><br><span class="line"><span class="string">    设计思路:w,b的规模应当满足前向传播计算中矩阵乘法的计算要求</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    np.random.seed(<span class="number">1</span>)</span><br><span class="line">    w = np.random.randn(out_,in_)*<span class="number">0.01</span></span><br><span class="line">    b = np.random.randn(out_,<span class="number">1</span>)*<span class="number">0.01</span></span><br><span class="line">    <span class="keyword">assert</span> (w.shape == (out_,in_))</span><br><span class="line">    <span class="keyword">assert</span> (b.shape == (out_,<span class="number">1</span>))</span><br><span class="line">    parameters = &#123;</span><br><span class="line">        <span class="string">&#x27;w&#x27;</span>: w,</span><br><span class="line">        <span class="string">&#x27;b&#x27;</span>: b</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> parameters  <span class="comment"># 该函数返回初始化好的权重参数字典</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 本函数为前向传播输出预测值</span></span><br><span class="line"><span class="comment"># 本函数实现对字典的更新即可，无需返回值</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">feed_forward</span>(<span class="params">parameters, X</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    parameters: 参数字典,即初始化的权重参数</span></span><br><span class="line"><span class="string">    X: 输入值</span></span><br><span class="line"><span class="string">    y_pred: 预测值</span></span><br><span class="line"><span class="string">    设计思路:利用参数字典中的w,b和输入值X，先进性线性变换，再进行激活，完成前向传播。将得到的y_pred添加保存至参数字典中。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    w1 = parameters[<span class="string">&quot;w&quot;</span>]</span><br><span class="line">    b1 = parameters[<span class="string">&quot;b&quot;</span>]</span><br><span class="line">    z1 = np.dot(w1,X) + b1</span><br><span class="line">    A1 = sigmoid(z1)</span><br><span class="line">    cache = &#123;</span><br><span class="line">        <span class="string">&quot;A1&quot;</span>: A1</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (A1,cache)</span><br><span class="line"><span class="comment"># 本函数为反向传播求梯度</span></span><br><span class="line"><span class="comment"># 通过链式法则求出梯度</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">gradient</span>(<span class="params">parameters, X, Y</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    parameters: 参数字典</span></span><br><span class="line"><span class="string">    X: 输入数据</span></span><br><span class="line"><span class="string">    y: 输出数据</span></span><br><span class="line"><span class="string">    dw: 权重参数的梯度</span></span><br><span class="line"><span class="string">    db: 偏置参数的梯度</span></span><br><span class="line"><span class="string">    设计思路:通过链式法则，得到w,b对损失函数的偏导数，得出dw,db。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    w1 = parameters[<span class="string">&quot;w&quot;</span>]</span><br><span class="line">    A1 = cache[<span class="string">&quot;A1&quot;</span>]</span><br><span class="line">    dw = (<span class="number">1</span>/<span class="number">1</span>)*np.dot(X,(A1-Y).T)<span class="comment">#(500,1)</span></span><br><span class="line">    db = (<span class="number">1</span>/<span class="number">1</span>)*np.<span class="built_in">sum</span>(A1-Y)</span><br><span class="line">    <span class="comment">#print(db.shape)</span></span><br><span class="line">    <span class="comment">#print(dw.shape,w1.shape,A1.shape,X)</span></span><br><span class="line">    <span class="comment">#assert (dw.shape == w1.shape)</span></span><br><span class="line">    grad = &#123;</span><br><span class="line">        <span class="string">&#x27;dw&#x27;</span>: dw,</span><br><span class="line">        <span class="string">&#x27;db&#x27;</span>: db</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> grad  <span class="comment"># 该函数返回通过反向传播求出的梯度字典</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 本函数为使用梯度下降法更新权重参数</span></span><br><span class="line"><span class="comment"># 所用梯度为经反向传播求得的梯度</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">update</span>(<span class="params">grad, parameters, lr</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    grad: 通过反向传播求出的梯度,保存了当前的dw,db</span></span><br><span class="line"><span class="string">    parameters: 参数字典,保存了当前的w,b</span></span><br><span class="line"><span class="string">    lr: 学习率,影响梯度下降的速度</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    w = parameters[<span class="string">&quot;w&quot;</span>]</span><br><span class="line">    b = parameters[<span class="string">&quot;b&quot;</span>]</span><br><span class="line">    dw = grad[<span class="string">&quot;dw&quot;</span>]</span><br><span class="line">    db = grad[<span class="string">&quot;db&quot;</span>]</span><br><span class="line">    w = w - lr*dw</span><br><span class="line">    b = b - lr*db</span><br><span class="line">    parameters = &#123;</span><br><span class="line">        <span class="string">&quot;w&quot;</span>: w,</span><br><span class="line">        <span class="string">&quot;b&quot;</span>: b</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> parameters  <span class="comment"># 该函数返回更新后的参数字典</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ ==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    parameters = initial_parameters(<span class="number">500</span>,<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(parameters)</span><br><span class="line">    A1,cache = feed_forward(parameters,X)</span><br><span class="line">    grad = gradient(parameters,X,Y)</span><br><span class="line">    parameters = update(grad, parameters , <span class="number">0.01</span>)</span><br><span class="line">    <span class="built_in">print</span>(parameters)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>第一题较为基础，具体思考过程放至第二题展示</p>
+<h2 id="2-搭建属于你的神经网络"><a href="#2-搭建属于你的神经网络" class="headerlink" title="2 搭建属于你的神经网络"></a>2 搭建属于你的神经网络</h2><h3 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h3><ol>
+<li>代码 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">x = pd.read_csv(<span class="string">&quot;UCI Heart Disease Dataset.csv&quot;</span>)</span><br><span class="line">    y = x[<span class="string">&quot;target&quot;</span>][:,np.newaxis]</span><br><span class="line">    <span class="keyword">del</span> x[<span class="string">&quot;target&quot;</span>]</span><br><span class="line">    x = np.array(x)</span><br><span class="line">    y = np.array(y)</span><br><span class="line">    y.astype(np.int64)</span><br><span class="line">    x = x.T</span><br><span class="line">    y =y.T</span><br><span class="line">    </span><br></pre></td></tr></table></figure></li>
+<li>解释：<ol>
+<li>转为矩阵更方便各类处理(reshape,切片….)</li>
+</ol>
+</li>
+</ol>
+<h3 id="初始化权重参数"><a href="#初始化权重参数" class="headerlink" title="初始化权重参数"></a>初始化权重参数</h3><ol>
+<li>代码<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">layer_sizes</span>(<span class="params">X , Y</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     X - 输入数据集,维度为（输入的数量，训练/测试的数量）</span></span><br><span class="line"><span class="string">     Y - 标签，维度为（输出的数量，训练/测试数量）</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     n_x - 输入层的数量</span></span><br><span class="line"><span class="string">     n_h - 隐藏层的数量</span></span><br><span class="line"><span class="string">     n_y - 输出层的数量</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    n_x = X.shape[<span class="number">0</span>] <span class="comment">#输入层</span></span><br><span class="line">    n_h = <span class="number">30</span> <span class="comment">#，隐藏层个数，硬编码为30</span></span><br><span class="line">    n_y = Y.shape[<span class="number">0</span>] <span class="comment">#输出层</span></span><br><span class="line">    <span class="keyword">return</span> (n_x,n_h,n_y)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">initial_parameters</span>(<span class="params">in_,hid_,out_</span>):</span><br><span class="line">       np.random.seed(<span class="number">2</span>)</span><br><span class="line">    w1 = np.random.randn(hid_,in_)*np.sqrt(<span class="number">1</span>/<span class="number">13</span>)</span><br><span class="line">    b1 = np.zeros(shape=(hid_,<span class="number">1</span>))</span><br><span class="line">    w2 = np.random.randn(out_,hid_)*np.sqrt(<span class="number">1</span>/hid_)</span><br><span class="line">    b2 = np.zeros(shape=(out_,<span class="number">1</span>))</span><br><span class="line">    <span class="comment">#适用断言确保数据维度初始化正确</span></span><br><span class="line">    <span class="keyword">assert</span> (w1.shape == (hid_,in_))</span><br><span class="line">    <span class="keyword">assert</span> (b1.shape == (hid_,<span class="number">1</span>))</span><br><span class="line">    <span class="keyword">assert</span> (w2.shape == (out_,hid_))</span><br><span class="line">    <span class="keyword">assert</span> (b2.shape == (out_,<span class="number">1</span>))</span><br><span class="line">    parameters =&#123;</span><br><span class="line">        <span class="string">&quot;w1&quot;</span>: w1,</span><br><span class="line">        <span class="string">&quot;b1&quot;</span>: b1,</span><br><span class="line">        <span class="string">&quot;w2&quot;</span>: w2,</span><br><span class="line">        <span class="string">&quot;b2&quot;</span>: b2</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> parameters</span><br></pre></td></tr></table></figure></li>
+<li>为何w随机，b全0：<ol>
+<li>w、b均全0初始化缺点：<ol>
+<li>若用全0初始化，则会使wx始终为0，使后续的参数迭代与初始数据无关，导致学习失败。</li>
+<li><strong>权重的对称性</strong>：如每个隐层的神经元的w都相等，正向传播的时候所有神经元的输出都一致。在反向传播的时候各隐藏层更新也相同。导致多个隐藏神经元的作用如同1个神经元。</li>
+</ol>
+</li>
+<li>w全0，b随机初始化缺点：<ol>
+<li>第一次batch的时候由于w为0，使得除了最后一层的w之外的w得不到更新。第二次batch时才可开始更新。</li>
+<li>存在更新较慢、梯度消失、梯度爆炸等问题</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="参数与超参数"><a href="#参数与超参数" class="headerlink" title="参数与超参数"></a>参数与超参数</h3><ol>
+<li>参数：<ol>
+<li>定义：就是模型可以根据数据可以自动学习出的变量</li>
+<li>本题：各层神经元的权重（w）、偏置（b）</li>
+</ol>
+</li>
+<li>超参数：<ol>
+<li>定义：就是用来确定模型的一些参数</li>
+<li>本题：学习速率（lr）、迭代次数（iretation_num）、神经网络的层数、每层神经元的个数等</li>
+</ol>
+</li>
+</ol>
+<h3 id="激活函数与损失函数"><a href="#激活函数与损失函数" class="headerlink" title="激活函数与损失函数"></a>激活函数与损失函数</h3><ol>
+<li><strong>激活函数</strong>：<ol>
+<li>作用：<ol>
+<li>部分较极端神经网络经过多层叠加会走向极限，影响最终预测。可用激活函数将其限制于一定范围内。</li>
+<li>线性回归的表达能力太弱了，对于y&#x3D;ax+b无论叠加多少层最后仍然是线性的，增加网络的深度根本没有意义。激活函数可令神经网络拥有非线性的表达能力。</li>
+</ol>
+</li>
+<li>本题：<ol>
+<li>sigmoid函数：二分类问题，最后一层用sigmoid可使最终结果位于（0，1）以表达判断概率。<ol>
+<li>缺点：<ol>
+<li>梯度消失可能性大</li>
+<li>在非最后一层使用会使下一层的输入全为正，使得反向传播更新参数时w全往同一方向更新（捆绑效果）</li>
+<li>幂运算较为耗时，增加训练时间</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>tanh函数<ol>
+<li>解决了Sigmoid函数的不是zero-centered输出问题</li>
+</ol>
+</li>
+<li>Relu函数：<ol>
+<li>优点<ol>
+<li>计算速度快，收敛速度快</li>
+<li>正区间中解决梯度消失问题</li>
+</ol>
+</li>
+<li>缺点：<ol>
+<li>非零中心</li>
+<li>极端情况下某些神经元不会被激活。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>代码：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sigmoid</span>(<span class="params">z</span>):</span><br><span class="line">    s = <span class="number">1</span>/(<span class="number">1</span>+np.exp(-z))</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">logistic_function</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0.5</span> * (<span class="number">1</span> + np.tanh(<span class="number">0.5</span> * x))</span><br><span class="line"><span class="comment">#防止sigmoid溢出的安全写法</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><strong>损失函数</strong>：<ol>
+<li><strong>交叉熵损失函数（二分类）</strong>：<ol>
+<li><img src="/2.png"></li>
+<li>多分类问题：<br> <img src="/3.png"></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h3><ol>
+<li>工具使用：matplotlib</li>
+<li>代码实现：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    plt.figure(<span class="number">1</span>)</span><br><span class="line">    plt.scatter(i,cost)</span><br><span class="line">    <span class="comment">#i为循环次数，cost为计算出的交叉熵损失，此处绘制散点图。</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></li>
+<li>结果展示：<br><img src="/4.png"></li>
+</ol>
+<h3 id="准确率计算"><a href="#准确率计算" class="headerlink" title="准确率计算"></a>准确率计算</h3><ol>
+<li>代码实现：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cache,a2 = feed_foward(x,parameters)</span><br><span class="line">predictions = a2</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;准确率: %d&#x27;</span> % <span class="built_in">float</span>((np.dot(y, predictions.T) + \</span><br><span class="line">                          np.dot(<span class="number">1</span> - y, <span class="number">1</span> - predictions.T)) / <span class="built_in">float</span>(y.size) * <span class="number">100</span>) + <span class="string">&#x27;%&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+<li>原理解释： accuracy &#x3D; (TP + TN) &#x2F; (TP + FP + TN + FN)</li>
+<li>结果：在30个神经元，学习率0.001，循环1500次下准确率仅有54%。在8个神经元，lr&#x3D;0.001，循环100w次准确率有90%以上。本题若想提升准确率还需扩大数据量或提高隐层个数。</li>
+</ol>
+<h3 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line">warnings.filterwarnings((<span class="string">&#x27;ignore&#x27;</span>))</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sigmoid</span>(<span class="params">z</span>):</span><br><span class="line">    s = <span class="number">1</span>/(<span class="number">1</span>+np.exp(-z))</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">logistic_function</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0.5</span> * (<span class="number">1</span> + np.tanh(<span class="number">0.5</span> * x))</span><br><span class="line">    <span class="comment">#sigmoid平替</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">layer_sizes</span>(<span class="params">X , Y</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     X - 输入数据集,维度为（输入的数量，训练/测试的数量）</span></span><br><span class="line"><span class="string">     Y - 标签，维度为（输出的数量，训练/测试数量）</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     n_x - 输入层的数量</span></span><br><span class="line"><span class="string">     n_h - 隐藏层的数量</span></span><br><span class="line"><span class="string">     n_y - 输出层的数量</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    n_x = X.shape[<span class="number">0</span>] <span class="comment">#输入层</span></span><br><span class="line">    n_h = <span class="number">30</span> <span class="comment">#，隐藏层，硬编码为30</span></span><br><span class="line">    n_y = Y.shape[<span class="number">0</span>] <span class="comment">#输出层</span></span><br><span class="line">    <span class="keyword">return</span> (n_x,n_h,n_y)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">softmax</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="comment"># 计算每行的最大值</span></span><br><span class="line">    row_max = np.<span class="built_in">max</span>(x)</span><br><span class="line">    <span class="comment"># 每行元素都需要减去对应的最大值，否则求exp(x)会溢出，导致inf情况</span></span><br><span class="line">    x = x - row_max</span><br><span class="line">    <span class="comment"># 计算e的指数次幂</span></span><br><span class="line">    x_exp = np.exp(x)</span><br><span class="line">    x_sum = np.<span class="built_in">sum</span>(x_exp)</span><br><span class="line">    s = x_exp / x_sum</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line">    <span class="comment">#用于多分类问题，保证p（总）=1.</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">initial_parameters</span>(<span class="params">in_,hid_,out_</span>):</span><br><span class="line">    np.random.seed(<span class="number">2</span>)</span><br><span class="line">    w1 = np.random.randn(hid_,in_)*np.sqrt(<span class="number">1</span>/<span class="number">13</span>)</span><br><span class="line">    b1 = np.zeros(shape=(hid_,<span class="number">1</span>))</span><br><span class="line">    w2 = np.random.randn(out_,hid_)*np.sqrt(<span class="number">1</span>/hid_)</span><br><span class="line">    b2 = np.zeros(shape=(out_,<span class="number">1</span>))</span><br><span class="line">    <span class="comment"># assert (w1.shape == (hid_,in_))</span></span><br><span class="line">    <span class="comment"># assert (b1.shape == (hid_,1))</span></span><br><span class="line">    <span class="comment"># assert (w2.shape == (out_,hid_))</span></span><br><span class="line">    <span class="comment"># assert (b2.shape == (hid_,1))</span></span><br><span class="line">    <span class="comment">#可使用断言保证数据维度初始化正确</span></span><br><span class="line">    parameters =&#123;</span><br><span class="line">        <span class="string">&quot;w1&quot;</span>: w1,</span><br><span class="line">        <span class="string">&quot;b1&quot;</span>: b1,</span><br><span class="line">        <span class="string">&quot;w2&quot;</span>: w2,</span><br><span class="line">        <span class="string">&quot;b2&quot;</span>: b2</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> parameters</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">feed_foward</span>(<span class="params">x,parameters</span>):</span><br><span class="line">    w1 = parameters[<span class="string">&quot;w1&quot;</span>]</span><br><span class="line">    b1 = parameters[<span class="string">&quot;b1&quot;</span>]</span><br><span class="line">    w2 = parameters[<span class="string">&quot;w2&quot;</span>]</span><br><span class="line">    b2 = parameters[<span class="string">&quot;b2&quot;</span>]</span><br><span class="line">    z1 = np.dot(w1,x)+b1</span><br><span class="line">    a1 = np.tanh(z1)</span><br><span class="line">    z2 = np.dot(w2,a1)+b2</span><br><span class="line">    a2 = logistic_function(z2)</span><br><span class="line">    <span class="comment">#a2 = sigmoid(z2)</span></span><br><span class="line">    cache = &#123;</span><br><span class="line">        <span class="string">&quot;z1&quot;</span>:z1,</span><br><span class="line">        <span class="string">&quot;a1&quot;</span>:a1,</span><br><span class="line">        <span class="string">&quot;z2&quot;</span>:z2,</span><br><span class="line">        <span class="string">&quot;a2&quot;</span>:a2</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (cache,a2)</span><br><span class="line">    <span class="comment">#cache用于储存已计算的结果，加快反向传播速度</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">prediction</span>(<span class="params">x,parameters</span>):</span><br><span class="line">    cache,a2 = feed_foward(x,parameters)</span><br><span class="line">    predictions = np.<span class="built_in">round</span>(a2)</span><br><span class="line">    <span class="comment">#取整，以0/1表示分类结果</span></span><br><span class="line">    <span class="keyword">return</span> predictions</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">compute_cost</span>(<span class="params">a2,y</span>):</span><br><span class="line">    m = y.shape[<span class="number">1</span>]</span><br><span class="line">    logprobs = np.multiply(np.log(a2),y)+np.multiply((<span class="number">1</span>-y),np.log(<span class="number">1</span>-a2))</span><br><span class="line">    <span class="comment">#计算交叉熵损失</span></span><br><span class="line">    cost = - np.<span class="built_in">sum</span>(logprobs) / m</span><br><span class="line">    <span class="comment">#求平均值</span></span><br><span class="line">    <span class="keyword">return</span> cost</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">gradient</span>(<span class="params">parameters,cache,x,y</span>):</span><br><span class="line">    m = x.shape[<span class="number">1</span>]</span><br><span class="line">    w1 = parameters[<span class="string">&quot;w1&quot;</span>]</span><br><span class="line">    w2 = parameters[<span class="string">&quot;w2&quot;</span>]</span><br><span class="line">    a1 = cache[<span class="string">&quot;a1&quot;</span>]</span><br><span class="line">    a2 = cache[<span class="string">&quot;a2&quot;</span>]</span><br><span class="line">    dz2 = a2-y</span><br><span class="line">    dw2 = (<span class="number">1</span>/m)*np.dot(dz2,a1.T)</span><br><span class="line">    db2 = (<span class="number">1</span>/m)*np.<span class="built_in">sum</span>(dz2,axis=<span class="number">1</span>,keepdims=<span class="literal">True</span>)</span><br><span class="line">    dz1 = np.multiply(np.dot(w2.T,dz2),<span class="number">1</span>-np.power(a1,<span class="number">2</span>))</span><br><span class="line">    dw1 = (<span class="number">1</span>/m)*np.dot(dz1,x.T)</span><br><span class="line">    db1 = (<span class="number">1</span>/m)*np.<span class="built_in">sum</span>(dz1,axis=<span class="number">1</span>,keepdims=<span class="literal">True</span>)</span><br><span class="line">    <span class="comment">#向量化计算反向传播，返回w、b等偏导数的矩阵</span></span><br><span class="line">    grads = &#123;</span><br><span class="line">        <span class="string">&quot;dw2&quot;</span>:dw2,</span><br><span class="line">        <span class="string">&quot;db2&quot;</span>:db2,</span><br><span class="line">        <span class="string">&quot;dw1&quot;</span>:dw1,</span><br><span class="line">        <span class="string">&quot;db1&quot;</span>:db1</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> grads</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">update_parameters</span>(<span class="params">parameters,grads,lr</span>):</span><br><span class="line">    w1 = parameters[<span class="string">&quot;w1&quot;</span>]</span><br><span class="line">    b1 = parameters[<span class="string">&quot;b1&quot;</span>]</span><br><span class="line">    w2 = parameters[<span class="string">&quot;w2&quot;</span>]</span><br><span class="line">    b2 = parameters[<span class="string">&quot;b2&quot;</span>]</span><br><span class="line">    dw1,dw2 = grads[<span class="string">&quot;dw1&quot;</span>],grads[<span class="string">&quot;dw2&quot;</span>]</span><br><span class="line">    db1,db2 = grads[<span class="string">&quot;db1&quot;</span>],grads[<span class="string">&quot;db2&quot;</span>]</span><br><span class="line">    w1 = w1 - lr * dw1</span><br><span class="line">    b1 = b1 - lr * db1</span><br><span class="line">    w2 = w2 - lr * dw2</span><br><span class="line">    b2 = b2 - lr * db2</span><br><span class="line">    <span class="comment">#更新参数</span></span><br><span class="line">    <span class="comment">#学习率过大：跳过最优解，函数难以收敛</span></span><br><span class="line">    <span class="comment">#学习率过小：网络收敛非常缓慢，会增大找到最优值的时间。很可能会进入局部极值点就收敛，没有真正找到的最优解。</span></span><br><span class="line">    parameters =&#123;</span><br><span class="line">        <span class="string">&quot;w1&quot;</span>: w1,</span><br><span class="line">        <span class="string">&quot;b1&quot;</span>: b1,</span><br><span class="line">        <span class="string">&quot;w2&quot;</span>: w2,</span><br><span class="line">        <span class="string">&quot;b2&quot;</span>: b2</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> parameters</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    x = pd.read_csv(<span class="string">&quot;UCI Heart Disease Dataset.csv&quot;</span>)</span><br><span class="line">    y = x[<span class="string">&quot;target&quot;</span>][:,np.newaxis]</span><br><span class="line">    <span class="keyword">del</span> x[<span class="string">&quot;target&quot;</span>]</span><br><span class="line">    x = np.array(x)</span><br><span class="line">    y = np.array(y)</span><br><span class="line">    y.astype(np.int64)</span><br><span class="line">    x = x.T</span><br><span class="line">    y =y.T</span><br><span class="line">    n_x, n_h, n_y = layer_sizes(x,y)</span><br><span class="line">    parameters = initial_parameters(n_x,n_h,n_y)</span><br><span class="line">    num_iterations =<span class="number">1500</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span> (num_iterations):</span><br><span class="line">        cache, a2 = feed_foward(x, parameters)</span><br><span class="line">        cost = compute_cost(a2,y)</span><br><span class="line">        grads = gradient(parameters, cache, x, y)</span><br><span class="line">        parameters = update_parameters(parameters,grads,<span class="number">0.001</span>)</span><br><span class="line">        <span class="keyword">if</span> i%<span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(cost)</span><br><span class="line">        plt.figure(<span class="number">1</span>)</span><br><span class="line">        plt.scatter(i,cost)</span><br><span class="line">    plt.show()</span><br><span class="line">    cache,a2 = feed_foward(x,parameters)</span><br><span class="line">    predictions = a2</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;准确率: %d&#x27;</span> % <span class="built_in">float</span>((np.dot(y, predictions.T) + \</span><br><span class="line">                              np.dot(<span class="number">1</span> - y, <span class="number">1</span> - predictions.T)) / <span class="built_in">float</span>(y.size) * <span class="number">100</span>) + <span class="string">&#x27;%&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/18/random-forest/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Mududu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mududu">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/18/random-forest/" class="post-title-link" itemprop="url">random-forest</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-10-18 14:29:44 / 修改时间：14:38:10" itemprop="dateCreated datePublished" datetime="2022-10-18T14:29:44+08:00">2022-10-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="别动！放下那蘑菇！"><a href="#别动！放下那蘑菇！" class="headerlink" title="别动！放下那蘑菇！"></a>别动！放下那蘑菇！</h2><h3 id="解题流程"><a href="#解题流程" class="headerlink" title="解题流程"></a>解题流程</h3><h4 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h4><p>1.<strong>缺失值处理</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#统计缺失值比例</span></span><br><span class="line">mis_mushroom = mushroom.isnull().<span class="built_in">sum</span>() / <span class="built_in">len</span>(mushroom)</span><br><span class="line">mis_percent = mis_mushroom.sort_values(ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="built_in">print</span>(mis_percent)</span><br></pre></td></tr></table></figure>
+<p>   <img src="/1.png"></p>
+<ol>
+<li><strong>删</strong>：通过统计缺失率，将大部分缺失的数据直接整列删去，留下缺失率较小的以待填补<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">label = [<span class="string">&#x27;veil-type&#x27;</span>, <span class="string">&#x27;spore-print-color&#x27;</span>, <span class="string">&#x27;veil-color&#x27;</span>, <span class="string">&#x27;stem-root&#x27;</span>]</span><br><span class="line">mushroom = mushroom.drop(label, axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure></li>
+<li><strong>补</strong>：<ol>
+<li>先通过Counter函数统计各项出现次数，然后再以众数填补（此处若使用随机森林填补效果更佳）。</li>
+<li>fillna填充<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mushroom[<span class="string">&#x27;stem-surface&#x27;</span>] = mushroom[<span class="string">&#x27;stem-surface&#x27;</span>].fillna(<span class="string">&#x27;s&#x27;</span>)</span><br><span class="line">mushroom[<span class="string">&#x27;gill-spacing&#x27;</span>] = mushroom[<span class="string">&#x27;gill-spacing&#x27;</span>].fillna(<span class="string">&#x27;c&#x27;</span>)</span><br><span class="line">mushroom[<span class="string">&#x27;cap-surface&#x27;</span>] = mushroom[<span class="string">&#x27;cap-surface&#x27;</span>].fillna(<span class="string">&#x27;t&#x27;</span>)</span><br><span class="line">mushroom[<span class="string">&#x27;gill-attachment&#x27;</span>] = mushroom[<span class="string">&#x27;gill-attachment&#x27;</span>].fillna(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">mushroom[<span class="string">&#x27;ring-type&#x27;</span>] = mushroom[<span class="string">&#x27;ring-type&#x27;</span>].fillna(<span class="string">&#x27;f&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><strong>字符型数据转换</strong><ol>
+<li>方法一：LabelEncoder： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">encoder=LabelEncoder()</span><br><span class="line"><span class="keyword">for</span> co <span class="keyword">in</span> mushroom.columns:</span><br><span class="line">    mushroom[co] = encoder.fit_transform(mushroom[co])</span><br></pre></td></tr></table></figure></li>
+<li>方法二：哑变量 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mushroom = pd.get_dummies(mushroom)</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><strong>可视化</strong><ol>
+<li>各数据相关性：通过热图显示，“gill-spacing”与“stem-surface”和“gill-color相关性较高”。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">   sns.heatmap(mushroom.corr(),annot=<span class="literal">True</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img src="/3.png"></li>
+<li>可视化分析</li>
+<li><img src="/4.png">展示每种菌盖颜色的出现次数<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   cap = mushroom[<span class="string">&quot;cap-color&quot;</span>].value_counts().reset_index()</span><br><span class="line">cap.columns = [<span class="string">&quot;color&quot;</span>, <span class="string">&quot;number&quot;</span>]</span><br><span class="line"><span class="built_in">print</span>(cap)</span><br><span class="line">fig = px.bar(cap,x= <span class="string">&quot;color&quot;</span>,y=<span class="string">&quot;number&quot;</span>,color=<span class="string">&quot;number&quot;</span></span><br><span class="line">             ,text=<span class="string">&quot;number&quot;</span>,color_continuous_scale=<span class="string">&quot;rainbow&quot;</span>)</span><br><span class="line">fig.show()</span><br></pre></td></tr></table></figure></li>
+<li><img src="/5.png">统计无毒与有毒的蘑菇的颜色分布<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   cap_class = mushroom.groupby([<span class="string">&quot;class&quot;</span>,<span class="string">&quot;cap-color&quot;</span>]).size().reset_index()</span><br><span class="line">cap_class.columns = [<span class="string">&quot;class&quot;</span>,<span class="string">&quot;color&quot;</span>,<span class="string">&quot;number&quot;</span>]</span><br><span class="line">fig = px.bar(cap_class,x= <span class="string">&quot;color&quot;</span>,y=<span class="string">&quot;number&quot;</span>,color=<span class="string">&quot;class&quot;</span></span><br><span class="line">             ,text=<span class="string">&quot;number&quot;</span>,barmode=<span class="string">&quot;group&quot;</span>)</span><br><span class="line">fig.show()</span><br></pre></td></tr></table></figure></li>
+<li><strong>分析结果</strong>：n颜色的蘑菇最多，而仅有b颜色的蘑菇无毒率较高，其余蘑菇均有约50%以上的有毒率。<br><strong>同理可以对于蘑菇的气味等数据进行可视化分析</strong></li>
+</ol>
+</li>
+<li><strong>标准化</strong><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scaler = StandardScaler()</span><br><span class="line">mushroom = scaler.fit_transform(mushroom)</span><br></pre></td></tr></table></figure></li>
+<li><strong>PCA</strong><ol>
+<li><img src="/7.png"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> plt.style.context(<span class="string">&quot;dark_background&quot;</span>):  <span class="comment"># 背景</span></span><br><span class="line">  plt.figure(figsize=(<span class="number">6</span>, <span class="number">4</span>))  <span class="comment"># 大小</span></span><br><span class="line"></span><br><span class="line">  plt.bar(<span class="built_in">range</span>(<span class="number">16</span>),  <span class="comment"># 主成分个数</span></span><br><span class="line">          explained_variance,  <span class="comment"># 方差值</span></span><br><span class="line">          alpha=<span class="number">0.5</span>,  <span class="comment"># 透明度</span></span><br><span class="line">          align=<span class="string">&quot;center&quot;</span>,</span><br><span class="line">          label=<span class="string">&quot;individual explained variance&quot;</span>  <span class="comment"># 标签</span></span><br><span class="line">          )</span><br><span class="line">  plt.ylabel(<span class="string">&#x27;Explained variance ratio&#x27;</span>)  <span class="comment"># 轴名称和图例</span></span><br><span class="line">  plt.xlabel(<span class="string">&#x27;Principal components&#x27;</span>)</span><br><span class="line">  plt.legend(loc=<span class="string">&quot;best&quot;</span>)</span><br><span class="line">  plt.tight_layout()</span><br><span class="line">  plt.show()</span><br></pre></td></tr></table></figure>
+由图像得，前十四位方差均较大，第十五位方差较小，与其余属性相关性太强，可直接删除以避免造成数据冗余。</li>
+</ol>
+</li>
+</ol>
+<h4 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h4><ol>
+<li><strong>网格搜索+训练</strong><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">estimator = RandomForestClassifier()</span><br><span class="line"> param_dict = &#123;<span class="string">&quot;n_estimators&quot;</span>:[ <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>], <span class="string">&quot;max_depth&quot;</span>:[<span class="number">8</span>,<span class="number">10</span>,<span class="number">12</span>]&#125;</span><br><span class="line"> estimator = GridSearchCV(estimator,param_grid=param_dict,cv=<span class="number">3</span>)</span><br><span class="line"> estimator.fit(x_train, y_train)</span><br></pre></td></tr></table></figure></li>
+<li><strong>模型评估</strong><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">score = estimator.score(x_test,y_test)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;准确率为&quot;</span>,score)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;最佳参数&quot;</span>,estimator.best_params_)</span><br></pre></td></tr></table></figure>
+<img src="/6.png"></li>
+</ol>
+<h3 id="模型原理（随机森林）"><a href="#模型原理（随机森林）" class="headerlink" title="模型原理（随机森林）"></a>模型原理（随机森林）</h3><ol>
+<li><strong>概念</strong>：<ol>
+<li>随机森林是一个包含多个决策树的分类器，并且其输出的类别是由个别树输出的类别的众数而定。它的工作原理是生成多个分类器&#x2F;模型，各自独立地学习和作出预测。这些预测最后结合成组合预测，因此优于任何一个单分类的做出预测。</li>
+<li>理解：“聪明树的想法总是差不多”，但笨树总是各有各的笨法”，所以选取众数的方法可以达到较好准确率（将弱分类器聚合为强分类器）</li>
+</ol>
+</li>
+<li><strong>实现流程</strong>：<ol>
+<li>用N来表示训练用例（样本）的个数，M表示特征数目。<ol>
+<li>一次随机选出一个样本，重复N次， （有可能出现重复的样本）</li>
+<li>随机去选出m个特征, m &lt;&lt;M，建立决策树</li>
+</ol>
+</li>
+<li>采取bootstrap抽样<ol>
+<li>保证每棵树不完全一样</li>
+<li>保证每棵树训练样本相同</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>**API(常用)**：<ol>
+<li>n_estimators ： 整数，可选(默认&#x3D; 100),森林里的树木数量。</li>
+<li>max_depth ： 整数或无，可选（默认&#x3D;无)树的最大深度。</li>
+</ol>
+</li>
+<li><strong>完整代码</strong><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span>  sklearn.preprocessing <span class="keyword">import</span> LabelEncoder</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> plotly_express <span class="keyword">as</span> px</span><br><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> PCA</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings((<span class="string">&#x27;ignore&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">check_poison</span>():</span><br><span class="line">    <span class="comment">#获取数据</span></span><br><span class="line">    mushroom = pd.read_csv(<span class="string">&quot;data.csv&quot;</span>, sep=<span class="string">&#x27;;&#x27;</span>)</span><br><span class="line">    <span class="comment">#统计缺失值比例</span></span><br><span class="line">    mis_mushroom = mushroom.isnull().<span class="built_in">sum</span>() / <span class="built_in">len</span>(mushroom)</span><br><span class="line">    mis_percent = mis_mushroom.sort_values(ascending=<span class="literal">False</span>)</span><br><span class="line">    <span class="built_in">print</span>(mis_percent)</span><br><span class="line">    <span class="comment">#数据处理：缺失值</span></span><br><span class="line">    label = [<span class="string">&#x27;veil-type&#x27;</span>, <span class="string">&#x27;spore-print-color&#x27;</span>, <span class="string">&#x27;veil-color&#x27;</span>, <span class="string">&#x27;stem-root&#x27;</span>]</span><br><span class="line">    mushroom = mushroom.drop(label, axis=<span class="number">1</span>)</span><br><span class="line">    <span class="comment">#label2 = [&#x27;stem-surface&#x27;,&#x27;gill-spacing&#x27;,&#x27;cap-surface&#x27;,&#x27;gill-attachment&#x27;,&#x27;ring-type&#x27;]</span></span><br><span class="line">    mushroom[<span class="string">&#x27;stem-surface&#x27;</span>] = mushroom[<span class="string">&#x27;stem-surface&#x27;</span>].fillna(<span class="string">&#x27;s&#x27;</span>)</span><br><span class="line">    mushroom[<span class="string">&#x27;gill-spacing&#x27;</span>] = mushroom[<span class="string">&#x27;gill-spacing&#x27;</span>].fillna(<span class="string">&#x27;c&#x27;</span>)</span><br><span class="line">    mushroom[<span class="string">&#x27;cap-surface&#x27;</span>] = mushroom[<span class="string">&#x27;cap-surface&#x27;</span>].fillna(<span class="string">&#x27;t&#x27;</span>)</span><br><span class="line">    mushroom[<span class="string">&#x27;gill-attachment&#x27;</span>] = mushroom[<span class="string">&#x27;gill-attachment&#x27;</span>].fillna(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">    mushroom[<span class="string">&#x27;ring-type&#x27;</span>] = mushroom[<span class="string">&#x27;ring-type&#x27;</span>].fillna(<span class="string">&#x27;f&#x27;</span>)</span><br><span class="line">    <span class="comment">#可视化/相关性</span></span><br><span class="line">    cap = mushroom[<span class="string">&quot;cap-color&quot;</span>].value_counts().reset_index()</span><br><span class="line">    cap.columns = [<span class="string">&quot;color&quot;</span>, <span class="string">&quot;number&quot;</span>]</span><br><span class="line">    fig = px.bar(cap,x= <span class="string">&quot;color&quot;</span>,y=<span class="string">&quot;number&quot;</span>,color=<span class="string">&quot;number&quot;</span></span><br><span class="line">                 ,text=<span class="string">&quot;number&quot;</span>,color_continuous_scale=<span class="string">&quot;rainbow&quot;</span>)</span><br><span class="line">    fig.show()</span><br><span class="line">    cap_class = mushroom.groupby([<span class="string">&quot;class&quot;</span>,<span class="string">&quot;cap-color&quot;</span>]).size().reset_index()</span><br><span class="line">    cap_class.columns = [<span class="string">&quot;class&quot;</span>,<span class="string">&quot;color&quot;</span>,<span class="string">&quot;number&quot;</span>]</span><br><span class="line">    fig = px.bar(cap_class,x= <span class="string">&quot;color&quot;</span>,y=<span class="string">&quot;number&quot;</span>,color=<span class="string">&quot;class&quot;</span></span><br><span class="line">                 ,text=<span class="string">&quot;number&quot;</span>,barmode=<span class="string">&quot;group&quot;</span>)</span><br><span class="line">    fig.show()</span><br><span class="line">    <span class="comment">#特征工程</span></span><br><span class="line">    <span class="comment">#特征转换</span></span><br><span class="line">    encoder=LabelEncoder()</span><br><span class="line">    <span class="keyword">for</span> co <span class="keyword">in</span> mushroom.columns:</span><br><span class="line">        mushroom[co] = encoder.fit_transform(mushroom[co])</span><br><span class="line">    <span class="comment">#分离特征与标签</span></span><br><span class="line">    target = mushroom.iloc[:, <span class="number">0</span>]</span><br><span class="line">    <span class="keyword">del</span> mushroom[<span class="string">&#x27;class&#x27;</span>]</span><br><span class="line">    <span class="comment">#热图无法处理字符串数据</span></span><br><span class="line">    <span class="comment"># sns.heatmap(mushroom.corr(),annot=True)</span></span><br><span class="line">    <span class="comment"># plt.show()</span></span><br><span class="line">    <span class="comment">#数据标准化</span></span><br><span class="line">    scaler = StandardScaler()</span><br><span class="line">    mushroom = scaler.fit_transform(mushroom)</span><br><span class="line">    <span class="comment">#主成分PCA</span></span><br><span class="line">    pca =PCA()</span><br><span class="line">    pca.fit_transform(mushroom)</span><br><span class="line">    convariance = pca.get_covariance()</span><br><span class="line">    explained_variance = pca.explained_variance_</span><br><span class="line">    <span class="keyword">with</span> plt.style.context(<span class="string">&quot;dark_background&quot;</span>):  <span class="comment"># 背景</span></span><br><span class="line">        plt.figure(figsize=(<span class="number">6</span>, <span class="number">4</span>))  <span class="comment"># 大小</span></span><br><span class="line"></span><br><span class="line">        plt.bar(<span class="built_in">range</span>(<span class="number">16</span>),  <span class="comment"># 主成分个数</span></span><br><span class="line">                explained_variance,  <span class="comment"># 方差值</span></span><br><span class="line">                alpha=<span class="number">0.5</span>,  <span class="comment"># 透明度</span></span><br><span class="line">                align=<span class="string">&quot;center&quot;</span>,</span><br><span class="line">                label=<span class="string">&quot;individual explained variance&quot;</span>  <span class="comment"># 标签</span></span><br><span class="line">                )</span><br><span class="line">        plt.ylabel(<span class="string">&#x27;Explained variance ratio&#x27;</span>)  <span class="comment"># 轴名称和图例</span></span><br><span class="line">        plt.xlabel(<span class="string">&#x27;Principal components&#x27;</span>)</span><br><span class="line">        plt.legend(loc=<span class="string">&quot;best&quot;</span>)</span><br><span class="line">        plt.tight_layout()</span><br><span class="line">        plt.show()</span><br><span class="line">    <span class="comment">#绘图展示主成分关系</span></span><br><span class="line">    x_train, x_test, y_train, y_test = train_test_split(mushroom,target)</span><br><span class="line">    <span class="comment">#网格搜索</span></span><br><span class="line">    estimator = RandomForestClassifier()</span><br><span class="line">    param_dict = &#123;<span class="string">&quot;n_estimators&quot;</span>:[ <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>], <span class="string">&quot;max_depth&quot;</span>:[<span class="number">8</span>,<span class="number">10</span>,<span class="number">12</span>]&#125;</span><br><span class="line">    estimator = GridSearchCV(estimator,param_grid=param_dict,cv=<span class="number">3</span>)</span><br><span class="line">    <span class="comment">#训练模型</span></span><br><span class="line">    estimator.fit(x_train, y_train)</span><br><span class="line">    <span class="comment">#模型评估</span></span><br><span class="line">    score = estimator.score(x_test,y_test)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;准确率为&quot;</span>,score)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;最佳参数&quot;</span>,estimator.best_params_)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    check_poison()</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/18/decide-tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Mududu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mududu">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/18/decide-tree/" class="post-title-link" itemprop="url">决策树初探</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-10-18 14:29:15 / 修改时间：14:37:51" itemprop="dateCreated datePublished" datetime="2022-10-18T14:29:15+08:00">2022-10-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="决策树算法原理"><a href="#决策树算法原理" class="headerlink" title="决策树算法原理"></a>决策树算法原理</h4><ol>
+<li>基本概念<ol>
+<li><strong>信息熵</strong>：解决问题不确定性所需要的信息量,单位为比特。<img src="/2.png"></li>
+<li><strong>信息增益</strong>：<br> eg:青年中年老年各五人，n&#x3D;3,Di&#x3D;5,D&#x3D;15<br> H(D|A)&#x3D;H(青年)+H(中年)+H(老年)<br> 特征A对训练数据集D的信息增益g(D,A),定义为集合D的信息熵H(D)与特征A给定条件下D的信息条件熵H(D|A)之差，即公式为： g(D,A)&#x3D;H(D)-H(D|A)，<img src="/5.png"> <img src="/3.png"></li>
+</ol>
+</li>
+<li><strong>构造过程</strong><ol>
+<li>通过公式计算出某一条件下系统熵值变化（信息增益）。信息增益在决策树算法中是用来选择特征的指标，信息增益越大，则这个特征的选择性越好。即可据其大小来决定优先判断哪个特征(更靠近根节点)。</li>
+</ol>
+</li>
+<li><strong>信息增益率（C4.5）与gini系数（CART）</strong><ol>
+<li>使用背景：出现如id等信息增益巨大但无法作为判断依据的数据。</li>
+<li>信息增益：<ol>
+<li>引入属性A的内部信息,以作为当某一特征类别过多的惩罚。<img src="/10.png"></li>
+<li>本质：H(c) 是分类类别的熵， 类别越多，熵倾向于越大；同理， H(X)是变量X的Gain, 变量X的取值越多，H(X)的值也会越大， 惩罚除数越大</li>
+</ol>
+</li>
+<li>gini系数：<ol>
+<li>gini系数：<img src="/11.png"></li>
+<li>gini增益：<img src="/12.png"></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><strong>剪枝</strong><ol>
+<li>原因：防止决策树完全分类所有数据，避免出现过拟合。要避免这种情况，也就需要进行剪枝，控制模型的复杂程度</li>
+<li>方法：<ol>
+<li>预剪枝：限制深度（比如指定到某一具体数值后不再进行分裂）、叶子节点个数、叶子节点样本数、信息增益量等(max_depth&#x3D; )</li>
+<li>后剪枝：<ol>
+<li>衡量标准：Cα(T)&#x3D;C(T)+α∗∣T leaf∣，C(T)&#x3D;gini*samples</li>
+<li>判断：判断分裂之后两个叶子节点之和相加与原C(T)大小，值越大代表着损失越大，也就越不好，取值的大小是取决于我们给定的α 值，α值给出的越大，模型越会控制过拟合，值较小的时候是我们希望模型取得较好的结果，过不过拟合看的不是很重要</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier,export_graphviz</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decision_iris</span>():</span><br><span class="line">    data = pd.read_csv(<span class="string">&quot;wdbc.data&quot;</span>,names=[<span class="string">&quot;id&quot;</span>,<span class="string">&quot;diagnose&quot;</span>,<span class="string">&quot;a1&quot;</span>, <span class="string">&quot;a2&quot;</span>, <span class="string">&quot;a3&quot;</span>, <span class="string">&quot;b1&quot;</span>, <span class="string">&quot;b2&quot;</span>, <span class="string">&quot;b3&quot;</span>, <span class="string">&quot;c1&quot;</span>, <span class="string">&quot;c2&quot;</span>, <span class="string">&quot;c3&quot;</span>, <span class="string">&quot;d1&quot;</span>, <span class="string">&quot;d2&quot;</span>, <span class="string">&quot;d3&quot;</span>, <span class="string">&quot;e1&quot;</span>, <span class="string">&quot;e2&quot;</span>, <span class="string">&quot;e3&quot;</span>, <span class="string">&quot;f1&quot;</span>, <span class="string">&quot;f2&quot;</span>, <span class="string">&quot;f3&quot;</span>, <span class="string">&quot;g1&quot;</span>, <span class="string">&quot;g2&quot;</span>, <span class="string">&quot;g3&quot;</span>, <span class="string">&quot;h1&quot;</span>, <span class="string">&quot;h2&quot;</span>, <span class="string">&quot;h3&quot;</span>, <span class="string">&quot;i1&quot;</span>, <span class="string">&quot;i2&quot;</span>, <span class="string">&quot;i3&quot;</span>, <span class="string">&quot;j1&quot;</span>, <span class="string">&quot;j2&quot;</span>, <span class="string">&quot;j3&quot;</span>])<span class="comment">#读取数据集</span></span><br><span class="line">    feature_names = [<span class="string">&quot;id&quot;</span>,<span class="string">&quot;a1&quot;</span>, <span class="string">&quot;a2&quot;</span>, <span class="string">&quot;a3&quot;</span>, <span class="string">&quot;b1&quot;</span>, <span class="string">&quot;b2&quot;</span>, <span class="string">&quot;b3&quot;</span>, <span class="string">&quot;c1&quot;</span>, <span class="string">&quot;c2&quot;</span>, <span class="string">&quot;c3&quot;</span>, <span class="string">&quot;d1&quot;</span>, <span class="string">&quot;d2&quot;</span>, <span class="string">&quot;d3&quot;</span>, <span class="string">&quot;e1&quot;</span>, <span class="string">&quot;e2&quot;</span>, <span class="string">&quot;e3&quot;</span>, <span class="string">&quot;f1&quot;</span>, <span class="string">&quot;f2&quot;</span>, <span class="string">&quot;f3&quot;</span>, <span class="string">&quot;g1&quot;</span>, <span class="string">&quot;g2&quot;</span>, <span class="string">&quot;g3&quot;</span>, <span class="string">&quot;h1&quot;</span>, <span class="string">&quot;h2&quot;</span>, <span class="string">&quot;h3&quot;</span>, <span class="string">&quot;i1&quot;</span>, <span class="string">&quot;i2&quot;</span>, <span class="string">&quot;i3&quot;</span>, <span class="string">&quot;j1&quot;</span>, <span class="string">&quot;j2&quot;</span>, <span class="string">&quot;j3&quot;</span>]</span><br><span class="line">    <span class="comment">#为数据column命名（用c++做的），并保存于feature——names</span></span><br><span class="line">    target = data.iloc[:,<span class="number">1</span>]<span class="comment">#单独引用第二行diagnose结果，作为target目标值</span></span><br><span class="line">    cancer = data.drop(<span class="string">&#x27;diagnose&#x27;</span>,axis=<span class="number">1</span>)<span class="comment">#删去第二行</span></span><br><span class="line">    x_train, x_test, y_train, y_test =train_test_split(cancer, target)<span class="comment">#数据划分</span></span><br><span class="line">    estimator = DecisionTreeClassifier(criterion=<span class="string">&quot;entropy&quot;</span>,random_state=<span class="number">5</span>)<span class="comment">#实例化预估器，以信息熵增益作为决策树选择标准</span></span><br><span class="line">    estimator.fit(x_train, y_train)<span class="comment">#进行训练</span></span><br><span class="line">    export_graphviz(estimator,out_file=<span class="string">&quot;cancer_tree.dot&quot;</span>,feature_names =feature_names)<span class="comment">#制图，存于指定路径</span></span><br><span class="line">    score = estimator.score(x_test, y_test)<span class="comment">#评估准确率</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;准确率为&#x27;</span>,score)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ ==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    decision_iris()</span><br></pre></td></tr></table></figure>
+<p><strong>获取列名</strong><br><img src="/8.png"><br><strong>准确率结果</strong><br><img src="/7.png"><br><strong>绘制决策树</strong><br><img src="/6.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/19/tihai/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -186,17 +585,23 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-09-19 15:14:47 / 修改时间：15:50:57" itemprop="dateCreated datePublished" datetime="2022-09-19T15:14:47+08:00">2022-09-19</time>
+              <time title="创建时间：2022-09-19 15:14:47" itemprop="dateCreated datePublished" datetime="2022-09-19T15:14:47+08:00">2022-09-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-18 14:38:18" itemprop="dateModified" datetime="2022-10-18T14:38:18+08:00">2022-10-18</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-learnig/" itemprop="url" rel="index"><span itemprop="name">Machine-learnig</span></a>
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
                 </span>
             </span>
 
@@ -356,7 +761,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-09-19 15:09:08 / 修改时间：15:50:12" itemprop="dateCreated datePublished" datetime="2022-09-19T15:09:08+08:00">2022-09-19</time>
+              <time title="创建时间：2022-09-19 15:09:08 / 修改时间：16:17:05" itemprop="dateCreated datePublished" datetime="2022-09-19T15:09:08+08:00">2022-09-19</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -364,7 +769,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-learnig/" itemprop="url" rel="index"><span itemprop="name">Machine-learnig</span></a>
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
                 </span>
             </span>
 
@@ -434,17 +839,23 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-09-19 15:08:20 / 修改时间：15:48:12" itemprop="dateCreated datePublished" datetime="2022-09-19T15:08:20+08:00">2022-09-19</time>
+              <time title="创建时间：2022-09-19 15:08:20" itemprop="dateCreated datePublished" datetime="2022-09-19T15:08:20+08:00">2022-09-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-18 14:36:56" itemprop="dateModified" datetime="2022-10-18T14:36:56+08:00">2022-10-18</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-learnig/" itemprop="url" rel="index"><span itemprop="name">Machine-learnig</span></a>
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
                 </span>
             </span>
 
@@ -510,17 +921,23 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-09-19 14:48:04 / 修改时间：15:47:55" itemprop="dateCreated datePublished" datetime="2022-09-19T14:48:04+08:00">2022-09-19</time>
+              <time title="创建时间：2022-09-19 14:48:04" itemprop="dateCreated datePublished" datetime="2022-09-19T14:48:04+08:00">2022-09-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-18 14:37:17" itemprop="dateModified" datetime="2022-10-18T14:37:17+08:00">2022-10-18</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-learnig/" itemprop="url" rel="index"><span itemprop="name">Machine-learnig</span></a>
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
                 </span>
             </span>
 
@@ -667,14 +1084,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

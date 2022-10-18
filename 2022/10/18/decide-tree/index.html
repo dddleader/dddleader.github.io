@@ -22,23 +22,29 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一、传统机器学习1.概念：百度：机器学习是一门多领域交叉学科，涉及概率论、统计学、逼近论、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。它是人工智能核心，是使计算机具有智能的根本途径。个人认为机器学习就是通过模型构建使机器具有从海量数据中寻求规律的的能力的过程。（好拗口） 2.流程个人总结：机器学习可总结为">
+  <meta name="description" content="决策树算法原理 基本概念 信息熵：解决问题不确定性所需要的信息量,单位为比特。 信息增益： eg:青年中年老年各五人，n&#x3D;3,Di&#x3D;5,D&#x3D;15 H(D|A)&#x3D;H(青年)+H(中年)+H(老年) 特征A对训练数据集D的信息增益g(D,A),定义为集合D的信息熵H(D)与特征A给定条件下D的信息条件熵H(D|A)之差，即公式为： g(D,A)&#x3D;H(D">
 <meta property="og:type" content="article">
-<meta property="og:title" content="花朵与人工智能">
-<meta property="og:url" content="http://example.com/2022/09/19/flower-and-AI/index.html">
+<meta property="og:title" content="决策树初探">
+<meta property="og:url" content="http://example.com/2022/10/18/decide-tree/index.html">
 <meta property="og:site_name" content="Mududu">
-<meta property="og:description" content="一、传统机器学习1.概念：百度：机器学习是一门多领域交叉学科，涉及概率论、统计学、逼近论、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。它是人工智能核心，是使计算机具有智能的根本途径。个人认为机器学习就是通过模型构建使机器具有从海量数据中寻求规律的的能力的过程。（好拗口） 2.流程个人总结：机器学习可总结为">
+<meta property="og:description" content="决策树算法原理 基本概念 信息熵：解决问题不确定性所需要的信息量,单位为比特。 信息增益： eg:青年中年老年各五人，n&#x3D;3,Di&#x3D;5,D&#x3D;15 H(D|A)&#x3D;H(青年)+H(中年)+H(老年) 特征A对训练数据集D的信息增益g(D,A),定义为集合D的信息熵H(D)与特征A给定条件下D的信息条件熵H(D|A)之差，即公式为： g(D,A)&#x3D;H(D">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/591720505b7b48229c5769aedb420c0c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5LiJ54i35bim5L2g6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
-<meta property="og:image" content="https://pic1.zhimg.com/80/v2-31ffa72066a76e473b40cbb345739688_1440w.jpg">
-<meta property="article:published_time" content="2022-09-19T07:08:20.000Z">
-<meta property="article:modified_time" content="2022-10-18T06:36:56.743Z">
+<meta property="og:image" content="http://example.com/2.png">
+<meta property="og:image" content="http://example.com/5.png">
+<meta property="og:image" content="http://example.com/3.png">
+<meta property="og:image" content="http://example.com/10.png">
+<meta property="og:image" content="http://example.com/11.png">
+<meta property="og:image" content="http://example.com/12.png">
+<meta property="og:image" content="http://example.com/8.png">
+<meta property="og:image" content="http://example.com/7.png">
+<meta property="og:image" content="http://example.com/6.png">
+<meta property="article:published_time" content="2022-10-18T06:29:15.000Z">
+<meta property="article:modified_time" content="2022-10-18T06:37:51.923Z">
 <meta property="article:author" content="Mududu">
-<meta property="article:tag" content="作业">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/591720505b7b48229c5769aedb420c0c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5LiJ54i35bim5L2g6aOe,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta name="twitter:image" content="http://example.com/2.png">
 
-<link rel="canonical" href="http://example.com/2022/09/19/flower-and-AI/">
+<link rel="canonical" href="http://example.com/2022/10/18/decide-tree/">
 
 
 <script id="page-configurations">
@@ -51,7 +57,7 @@
   };
 </script>
 
-  <title>花朵与人工智能 | Mududu</title>
+  <title>决策树初探 | Mududu</title>
   
 
 
@@ -172,7 +178,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/19/flower-and-AI/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/18/decide-tree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -185,7 +191,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          花朵与人工智能
+          决策树初探
         </h1>
 
         <div class="post-meta">
@@ -194,16 +200,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-09-19 15:08:20" itemprop="dateCreated datePublished" datetime="2022-09-19T15:08:20+08:00">2022-09-19</time>
+              <time title="创建时间：2022-10-18 14:29:15 / 修改时间：14:37:51" itemprop="dateCreated datePublished" datetime="2022-10-18T14:29:15+08:00">2022-10-18</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-18 14:36:56" itemprop="dateModified" datetime="2022-10-18T14:36:56+08:00">2022-10-18</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -232,15 +232,46 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="一、传统机器学习"><a href="#一、传统机器学习" class="headerlink" title="一、传统机器学习"></a>一、传统机器学习</h2><h3 id="1-概念："><a href="#1-概念：" class="headerlink" title="1.概念："></a>1.概念：</h3><p><strong>百度</strong>：机器学习是一门多领域交叉学科，涉及概率论、统计学、逼近论、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。它是人工智能核心，是使计算机具有智能的根本途径。<br><strong>个人认为</strong>机器学习就是通过模型构建使机器具有从海量数据中寻求规律的的能力的过程。（好拗口）</p>
-<h3 id="2-流程"><a href="#2-流程" class="headerlink" title="2.流程"></a>2.流程</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hzblucky1314/article/details/123320780"><img src="https://img-blog.csdnimg.cn/591720505b7b48229c5769aedb420c0c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5LiJ54i35bim5L2g6aOe,size_20,color_FFFFFF,t_70,g_se,x_16" alt="流程"></a><br><strong>个人总结</strong>：机器学习可总结为3步<br>（1）运用不同算法构建相应模型<br>（2）用经过预处理的数据对模型进行训练<br>（3）评估结果并调整参数以期对未知数据达到最好的预测效果</p>
-<h2 id="二、深度学习"><a href="#二、深度学习" class="headerlink" title="二、深度学习"></a>二、深度学习</h2><h3 id="1-概念：-1"><a href="#1-概念：-1" class="headerlink" title="1.概念："></a>1.概念：</h3><p>深度学习是机器学习中一种基于对数据进行表征学习的方法。深度学习是机器学习研究中的一个新的领域，其动机在于建立、模拟人脑进行分析学习的神经网络，它模仿人脑的机制来解释数据，例如图像，声音和文本。</p>
-<h3 id="2-流程："><a href="#2-流程：" class="headerlink" title="2.流程："></a>2.流程：</h3><p><strong>个人认为</strong>其与传统机器学习基本相同,但其在训练过程中引入了对人体神经网络的模拟.</p>
-<h2 id="三、两者的区别与联系"><a href="#三、两者的区别与联系" class="headerlink" title="三、两者的区别与联系"></a>三、两者的区别与联系</h2><h2 id="1-联系"><a href="#1-联系" class="headerlink" title="1.联系"></a>1.联系</h2><p>深度学习是机器学习的子集,是实现机器学习的一种技术分支,其可使模型对于数据的理解更加深入.<br>对于数据充足、定义清晰、特征不易提取的问题DL更适用.<br>对于数据少、特征明显的问题ML更适用。<br>二者相辅相成</p>
-<h2 id="2-区别"><a href="#2-区别" class="headerlink" title="2.区别"></a>2.区别</h2><h4 id="训练数据量-amp-硬件依赖"><a href="#训练数据量-amp-硬件依赖" class="headerlink" title="训练数据量&amp;硬件依赖"></a>训练数据量&amp;硬件依赖</h4><p>深度学习算法需要大量数据才能展现出更好的性能,对硬件要求也更高.(如下图)<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/82703514"><img src="https://pic1.zhimg.com/80/v2-31ffa72066a76e473b40cbb345739688_1440w.jpg" alt="数据相关性" title="引用自知乎"></a><br>而机器学习由于算法以及特征工程的构建,在较小数据集下效果更好.</p>
-<h4 id="特征处理方式"><a href="#特征处理方式" class="headerlink" title="特征处理方式"></a>特征处理方式</h4><p>传统机器学习的特征提取是人为处理的(有点像监督式学习?)<br>深度学习的特征提取是由深层神经网络自行提取的(无监督式学习?),其特征人类无法看懂,也称<em>黑盒子</em></p>
-<h4 id="执行时间"><a href="#执行时间" class="headerlink" title="执行时间"></a>执行时间</h4><p>由于深度学习算法中有很多的参数，其需要很长时间来训练(但测试时间反而较短).而ML学习时间较短
-    </p>
+        <h4 id="决策树算法原理"><a href="#决策树算法原理" class="headerlink" title="决策树算法原理"></a>决策树算法原理</h4><ol>
+<li>基本概念<ol>
+<li><strong>信息熵</strong>：解决问题不确定性所需要的信息量,单位为比特。<img src="/2.png"></li>
+<li><strong>信息增益</strong>：<br> eg:青年中年老年各五人，n&#x3D;3,Di&#x3D;5,D&#x3D;15<br> H(D|A)&#x3D;H(青年)+H(中年)+H(老年)<br> 特征A对训练数据集D的信息增益g(D,A),定义为集合D的信息熵H(D)与特征A给定条件下D的信息条件熵H(D|A)之差，即公式为： g(D,A)&#x3D;H(D)-H(D|A)，<img src="/5.png"> <img src="/3.png"></li>
+</ol>
+</li>
+<li><strong>构造过程</strong><ol>
+<li>通过公式计算出某一条件下系统熵值变化（信息增益）。信息增益在决策树算法中是用来选择特征的指标，信息增益越大，则这个特征的选择性越好。即可据其大小来决定优先判断哪个特征(更靠近根节点)。</li>
+</ol>
+</li>
+<li><strong>信息增益率（C4.5）与gini系数（CART）</strong><ol>
+<li>使用背景：出现如id等信息增益巨大但无法作为判断依据的数据。</li>
+<li>信息增益：<ol>
+<li>引入属性A的内部信息,以作为当某一特征类别过多的惩罚。<img src="/10.png"></li>
+<li>本质：H(c) 是分类类别的熵， 类别越多，熵倾向于越大；同理， H(X)是变量X的Gain, 变量X的取值越多，H(X)的值也会越大， 惩罚除数越大</li>
+</ol>
+</li>
+<li>gini系数：<ol>
+<li>gini系数：<img src="/11.png"></li>
+<li>gini增益：<img src="/12.png"></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><strong>剪枝</strong><ol>
+<li>原因：防止决策树完全分类所有数据，避免出现过拟合。要避免这种情况，也就需要进行剪枝，控制模型的复杂程度</li>
+<li>方法：<ol>
+<li>预剪枝：限制深度（比如指定到某一具体数值后不再进行分裂）、叶子节点个数、叶子节点样本数、信息增益量等(max_depth&#x3D; )</li>
+<li>后剪枝：<ol>
+<li>衡量标准：Cα(T)&#x3D;C(T)+α∗∣T leaf∣，C(T)&#x3D;gini*samples</li>
+<li>判断：判断分裂之后两个叶子节点之和相加与原C(T)大小，值越大代表着损失越大，也就越不好，取值的大小是取决于我们给定的α 值，α值给出的越大，模型越会控制过拟合，值较小的时候是我们希望模型取得较好的结果，过不过拟合看的不是很重要</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier,export_graphviz</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decision_iris</span>():</span><br><span class="line">    data = pd.read_csv(<span class="string">&quot;wdbc.data&quot;</span>,names=[<span class="string">&quot;id&quot;</span>,<span class="string">&quot;diagnose&quot;</span>,<span class="string">&quot;a1&quot;</span>, <span class="string">&quot;a2&quot;</span>, <span class="string">&quot;a3&quot;</span>, <span class="string">&quot;b1&quot;</span>, <span class="string">&quot;b2&quot;</span>, <span class="string">&quot;b3&quot;</span>, <span class="string">&quot;c1&quot;</span>, <span class="string">&quot;c2&quot;</span>, <span class="string">&quot;c3&quot;</span>, <span class="string">&quot;d1&quot;</span>, <span class="string">&quot;d2&quot;</span>, <span class="string">&quot;d3&quot;</span>, <span class="string">&quot;e1&quot;</span>, <span class="string">&quot;e2&quot;</span>, <span class="string">&quot;e3&quot;</span>, <span class="string">&quot;f1&quot;</span>, <span class="string">&quot;f2&quot;</span>, <span class="string">&quot;f3&quot;</span>, <span class="string">&quot;g1&quot;</span>, <span class="string">&quot;g2&quot;</span>, <span class="string">&quot;g3&quot;</span>, <span class="string">&quot;h1&quot;</span>, <span class="string">&quot;h2&quot;</span>, <span class="string">&quot;h3&quot;</span>, <span class="string">&quot;i1&quot;</span>, <span class="string">&quot;i2&quot;</span>, <span class="string">&quot;i3&quot;</span>, <span class="string">&quot;j1&quot;</span>, <span class="string">&quot;j2&quot;</span>, <span class="string">&quot;j3&quot;</span>])<span class="comment">#读取数据集</span></span><br><span class="line">    feature_names = [<span class="string">&quot;id&quot;</span>,<span class="string">&quot;a1&quot;</span>, <span class="string">&quot;a2&quot;</span>, <span class="string">&quot;a3&quot;</span>, <span class="string">&quot;b1&quot;</span>, <span class="string">&quot;b2&quot;</span>, <span class="string">&quot;b3&quot;</span>, <span class="string">&quot;c1&quot;</span>, <span class="string">&quot;c2&quot;</span>, <span class="string">&quot;c3&quot;</span>, <span class="string">&quot;d1&quot;</span>, <span class="string">&quot;d2&quot;</span>, <span class="string">&quot;d3&quot;</span>, <span class="string">&quot;e1&quot;</span>, <span class="string">&quot;e2&quot;</span>, <span class="string">&quot;e3&quot;</span>, <span class="string">&quot;f1&quot;</span>, <span class="string">&quot;f2&quot;</span>, <span class="string">&quot;f3&quot;</span>, <span class="string">&quot;g1&quot;</span>, <span class="string">&quot;g2&quot;</span>, <span class="string">&quot;g3&quot;</span>, <span class="string">&quot;h1&quot;</span>, <span class="string">&quot;h2&quot;</span>, <span class="string">&quot;h3&quot;</span>, <span class="string">&quot;i1&quot;</span>, <span class="string">&quot;i2&quot;</span>, <span class="string">&quot;i3&quot;</span>, <span class="string">&quot;j1&quot;</span>, <span class="string">&quot;j2&quot;</span>, <span class="string">&quot;j3&quot;</span>]</span><br><span class="line">    <span class="comment">#为数据column命名（用c++做的），并保存于feature——names</span></span><br><span class="line">    target = data.iloc[:,<span class="number">1</span>]<span class="comment">#单独引用第二行diagnose结果，作为target目标值</span></span><br><span class="line">    cancer = data.drop(<span class="string">&#x27;diagnose&#x27;</span>,axis=<span class="number">1</span>)<span class="comment">#删去第二行</span></span><br><span class="line">    x_train, x_test, y_train, y_test =train_test_split(cancer, target)<span class="comment">#数据划分</span></span><br><span class="line">    estimator = DecisionTreeClassifier(criterion=<span class="string">&quot;entropy&quot;</span>,random_state=<span class="number">5</span>)<span class="comment">#实例化预估器，以信息熵增益作为决策树选择标准</span></span><br><span class="line">    estimator.fit(x_train, y_train)<span class="comment">#进行训练</span></span><br><span class="line">    export_graphviz(estimator,out_file=<span class="string">&quot;cancer_tree.dot&quot;</span>,feature_names =feature_names)<span class="comment">#制图，存于指定路径</span></span><br><span class="line">    score = estimator.score(x_test, y_test)<span class="comment">#评估准确率</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;准确率为&#x27;</span>,score)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ ==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    decision_iris()</span><br></pre></td></tr></table></figure>
+<p><strong>获取列名</strong><br><img src="/8.png"><br><strong>准确率结果</strong><br><img src="/7.png"><br><strong>绘制决策树</strong><br><img src="/6.png"></p>
 
     </div>
 
@@ -269,9 +300,6 @@
 
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag"># 作业</a>
-          </div>
 
         
 
@@ -279,12 +307,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/09/19/auto-drive/" rel="prev" title="瞎谈机器学习与自动驾驶">
-      <i class="fa fa-chevron-left"></i> 瞎谈机器学习与自动驾驶
+    <a href="/2022/09/19/tihai/" rel="prev" title="题海战术两面观">
+      <i class="fa fa-chevron-left"></i> 题海战术两面观
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/09/19/NBA/" rel="next" title="第二题-NBA球风">
-      第二题-NBA球风 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/10/18/random-forest/" rel="next" title="random-forest">
+      random-forest <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -344,7 +372,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">一、传统机器学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A6%82%E5%BF%B5%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">1.概念：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%B5%81%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">2.流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.</span> <span class="nav-text">二、深度学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A6%82%E5%BF%B5%EF%BC%9A-1"><span class="nav-number">2.1.</span> <span class="nav-text">1.概念：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%B5%81%E7%A8%8B%EF%BC%9A"><span class="nav-number">2.2.</span> <span class="nav-text">2.流程：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%B8%A4%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB"><span class="nav-number">3.</span> <span class="nav-text">三、两者的区别与联系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%81%94%E7%B3%BB"><span class="nav-number">4.</span> <span class="nav-text">1.联系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8C%BA%E5%88%AB"><span class="nav-number">5.</span> <span class="nav-text">2.区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E9%87%8F-amp-%E7%A1%AC%E4%BB%B6%E4%BE%9D%E8%B5%96"><span class="nav-number">5.0.1.</span> <span class="nav-text">训练数据量&amp;硬件依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="nav-number">5.0.2.</span> <span class="nav-text">特征处理方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4"><span class="nav-number">5.0.3.</span> <span class="nav-text">执行时间</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">决策树算法原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">解题过程</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
