@@ -22,15 +22,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Mududu">
-<meta property="og:url" content="http://example.com/categories/Machine-learnig/index.html">
+  <meta name="description" content="numpy数组属性： array &#x3D; np.array([[1,2,3],[2,3,4]])将列表转换为数组 获取属性 array.shape—-行列 array.ndim—维度 array.size–元素个数   创建矩阵 a&#x3D; np.array([2,3,4],dtype&#x3D;np.int) 零矩阵：a &#x3D; np.zeros((3,4)) 全为一：a &amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="numpy">
+<meta property="og:url" content="http://example.com/2022/10/18/numpy/index.html">
 <meta property="og:site_name" content="Mududu">
+<meta property="og:description" content="numpy数组属性： array &#x3D; np.array([[1,2,3],[2,3,4]])将列表转换为数组 获取属性 array.shape—-行列 array.ndim—维度 array.size–元素个数   创建矩阵 a&#x3D; np.array([2,3,4],dtype&#x3D;np.int) 零矩阵：a &#x3D; np.zeros((3,4)) 全为一：a &amp;#x">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-18T13:19:55.000Z">
+<meta property="article:modified_time" content="2022-10-18T13:23:42.112Z">
 <meta property="article:author" content="Mududu">
+<meta property="article:tag" content="ml函数库">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/categories/Machine-learnig/">
+<link rel="canonical" href="http://example.com/2022/10/18/numpy/">
 
 
 <script id="page-configurations">
@@ -38,12 +43,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>分类: Machine-learnig | Mududu</title>
+  <title>numpy | Mududu</title>
   
 
 
@@ -157,51 +162,188 @@
         <div class="content-wrap">
           
 
-          <div class="content category">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">Machine-learnig
-          <small>分类</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/18/numpy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Mududu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mududu">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          numpy
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-10-18 21:19:55 / 修改时间：21:23:42" itemprop="dateCreated datePublished" datetime="2022-10-18T21:19:55+08:00">2022-10-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
+        <h1 id="numpy"><a href="#numpy" class="headerlink" title="numpy"></a>numpy</h1><h4 id="数组属性："><a href="#数组属性：" class="headerlink" title="数组属性："></a>数组属性：</h4><ol>
+<li>array &#x3D; np.array([[1,2,3],[2,3,4]])将列表转换为数组</li>
+<li>获取属性<ol>
+<li>array.shape—-行列</li>
+<li>array.ndim—维度</li>
+<li>array.size–元素个数</li>
+</ol>
+</li>
+<li>创建矩阵<ol>
+<li>a&#x3D; np.array([2,3,4],dtype&#x3D;np.int)</li>
+<li>零矩阵：a &#x3D; np.zeros((3,4))</li>
+<li>全为一：a &#x3D; nmp.ones((3,4))</li>
+<li>数列： a &#x3D; np.arrange(10,20,2).reshape((3,4))<ol>
+<li>起始，步频</li>
+<li>a &#x3D; linspace(1,10,5)五段</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>基础运算<ol>
+<li>逐个判断值：print(b&lt;3)</li>
+<li>逐个相乘：c &#x3D; a*b</li>
+<li>矩阵相乘：c &#x3D; np.dot(a,b) &#x3D; a.dot(b)</li>
+<li>随机矩阵：a &#x3D; np.random.random(2,4)二行四列，random下的random函数<ol>
+<li>np.random.randint(-2, 3, (10,10)</li>
+<li>np.random.uniform(-2,3,(5,5))</li>
+</ol>
+</li>
+<li>np.min(a,axis&#x3D;1)   1–列中  0–行中<ol>
+<li>np.sum(a,axis&#x3D;1)求和</li>
+</ol>
+</li>
+<li>np.cumsum(A)依次累加<ol>
+<li>np.diff(A)累差</li>
+</ol>
+</li>
+<li>转置：A.T   ||   np.transpose(A)</li>
+<li>转换为一行 A.flat<ol>
+<li>for item in A.flat</li>
+</ol>
+</li>
+<li>b &#x3D; a.copy()  仅赋值，不关联</li>
+</ol>
+</li>
+<li>索引…<ol>
+<li>np.argmin(A)返回位置</li>
+<li>逐行排序：np.sort(A)</li>
+<li>np.clip(A,5,9) 小于5为5，大于9为9  </li>
+<li>A[2,:]代表第二行所有数<ol>
+<li>1：3–包含第1、2个</li>
+</ol>
+</li>
+<li>for row in A 按行迭代<ol>
+<li>for row in A.T 按列迭代</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>数组合并<ol>
+<li>上下：np.vstack((A,B))</li>
+<li>左右：np.hstack((A,B))</li>
+<li>多个：np.concatenate((A,B,B,A),axis &#x3D; 0 )</li>
+</ol>
+</li>
+<li>数组的分割<ol>
+<li>np.array_split(A,2,axis&#x3D;1) 分成2块，按列(可不等量)</li>
+<li></li>
+</ol>
+</li>
+</ol>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-09-19T15:09:45+08:00"
-              content="2022-09-19">
-          09-19
-        </time>
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Mududu 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Mududu 支付宝">
+        <p>支付宝</p>
       </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/09/19/population/" itemprop="url">
-            <span itemprop="name">第三题 - 死去的高中生物突然攻击了我</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-    </div>
   </div>
-  
-  
-  
+</div>
 
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ml%E5%87%BD%E6%95%B0%E5%BA%93/" rel="tag"># ml函数库</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/18/neural-network/" rel="prev" title="neural-network">
+      <i class="fa fa-chevron-left"></i> neural-network
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/18/pandas/" rel="next" title="pandas">
+      pandas <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
@@ -254,6 +396,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#numpy"><span class="nav-number">1.</span> <span class="nav-text">numpy</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E5%B1%9E%E6%80%A7%EF%BC%9A"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">数组属性：</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -269,7 +412,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -282,7 +425,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

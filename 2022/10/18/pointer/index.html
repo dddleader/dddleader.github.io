@@ -22,30 +22,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="决策树算法原理 基本概念 信息熵：解决问题不确定性所需要的信息量,单位为比特。 信息增益： eg:青年中年老年各五人，n&#x3D;3,Di&#x3D;5,D&#x3D;15 H(D|A)&#x3D;H(青年)+H(中年)+H(老年) 特征A对训练数据集D的信息增益g(D,A),定义为集合D的信息熵H(D)与特征A给定条件下D的信息条件熵H(D|A)之差，即公式为： g(D,A)&#x3D;H(D">
+  <meta name="description" content="指针数组&amp;&amp;数组指针数组元素的访问 一维数组：12&amp;A[i]&#x3D;A+L*iA为首地址，L为数据类型 二维数组：1234&amp;A[i][j]&#x3D;A+L*(C*i+j)A为首地址，L为数据类型C为二维数组的列数由于数组内存按行排列，二维数组的定义必须指定列数  通过指针访问数组 通过指针访问一维数组 定义1234   int a[4]&#x3D;&amp;#123;1,3,5,7&amp;#125;;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="决策树初探">
-<meta property="og:url" content="http://example.com/2022/10/18/decide-tree/index.html">
+<meta property="og:title" content="pointer">
+<meta property="og:url" content="http://example.com/2022/10/18/pointer/index.html">
 <meta property="og:site_name" content="Mududu">
-<meta property="og:description" content="决策树算法原理 基本概念 信息熵：解决问题不确定性所需要的信息量,单位为比特。 信息增益： eg:青年中年老年各五人，n&#x3D;3,Di&#x3D;5,D&#x3D;15 H(D|A)&#x3D;H(青年)+H(中年)+H(老年) 特征A对训练数据集D的信息增益g(D,A),定义为集合D的信息熵H(D)与特征A给定条件下D的信息条件熵H(D|A)之差，即公式为： g(D,A)&#x3D;H(D">
+<meta property="og:description" content="指针数组&amp;&amp;数组指针数组元素的访问 一维数组：12&amp;A[i]&#x3D;A+L*iA为首地址，L为数据类型 二维数组：1234&amp;A[i][j]&#x3D;A+L*(C*i+j)A为首地址，L为数据类型C为二维数组的列数由于数组内存按行排列，二维数组的定义必须指定列数  通过指针访问数组 通过指针访问一维数组 定义1234   int a[4]&#x3D;&amp;#123;1,3,5,7&amp;#125;;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2.png">
-<meta property="og:image" content="http://example.com/5.png">
-<meta property="og:image" content="http://example.com/3.png">
-<meta property="og:image" content="http://example.com/10.png">
-<meta property="og:image" content="http://example.com/11.png">
-<meta property="og:image" content="http://example.com/12.png">
-<meta property="og:image" content="http://example.com/8.png">
-<meta property="og:image" content="http://example.com/7.png">
-<meta property="og:image" content="http://example.com/6.png">
-<meta property="article:published_time" content="2022-10-18T06:29:15.000Z">
-<meta property="article:modified_time" content="2022-10-18T13:28:11.402Z">
+<meta property="article:published_time" content="2022-10-18T13:25:01.000Z">
+<meta property="article:modified_time" content="2022-10-18T13:26:08.470Z">
 <meta property="article:author" content="Mududu">
-<meta property="article:tag" content="作业">
+<meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2.png">
 
-<link rel="canonical" href="http://example.com/2022/10/18/decide-tree/">
+<link rel="canonical" href="http://example.com/2022/10/18/pointer/">
 
 
 <script id="page-configurations">
@@ -58,7 +48,7 @@
   };
 </script>
 
-  <title>决策树初探 | Mududu</title>
+  <title>pointer | Mududu</title>
   
 
 
@@ -179,7 +169,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/18/decide-tree/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/18/pointer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -192,7 +182,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          决策树初探
+          pointer
         </h1>
 
         <div class="post-meta">
@@ -203,7 +193,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-10-18 14:29:15 / 修改时间：21:28:11" itemprop="dateCreated datePublished" datetime="2022-10-18T14:29:15+08:00">2022-10-18</time>
+              <time title="创建时间：2022-10-18 21:25:01 / 修改时间：21:26:08" itemprop="dateCreated datePublished" datetime="2022-10-18T21:25:01+08:00">2022-10-18</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -211,7 +201,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                  <a href="/categories/C%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">C语言</span></a>
                 </span>
             </span>
 
@@ -233,46 +223,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="决策树算法原理"><a href="#决策树算法原理" class="headerlink" title="决策树算法原理"></a>决策树算法原理</h4><ol>
-<li>基本概念<ol>
-<li><strong>信息熵</strong>：解决问题不确定性所需要的信息量,单位为比特。<img src="/2.png"></li>
-<li><strong>信息增益</strong>：<br> eg:青年中年老年各五人，n&#x3D;3,Di&#x3D;5,D&#x3D;15<br> H(D|A)&#x3D;H(青年)+H(中年)+H(老年)<br> 特征A对训练数据集D的信息增益g(D,A),定义为集合D的信息熵H(D)与特征A给定条件下D的信息条件熵H(D|A)之差，即公式为： g(D,A)&#x3D;H(D)-H(D|A)，<img src="/5.png"> <img src="/3.png"></li>
+        <h1 id="指针数组-amp-amp-数组指针"><a href="#指针数组-amp-amp-数组指针" class="headerlink" title="指针数组&amp;&amp;数组指针"></a>指针数组&amp;&amp;数组指针</h1><h2 id="数组元素的访问"><a href="#数组元素的访问" class="headerlink" title="数组元素的访问"></a>数组元素的访问</h2><ol>
+<li>一维数组：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&amp;A[i]=A+L*i</span><br><span class="line">A为首地址，L为数据类型</span><br></pre></td></tr></table></figure></li>
+<li>二维数组：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&amp;A[i][j]=A+L*(C*i+j)</span><br><span class="line">A为首地址，L为数据类型</span><br><span class="line">C为二维数组的列数</span><br><span class="line">由于数组内存按行排列，二维数组的定义必须指定列数</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="通过指针访问数组"><a href="#通过指针访问数组" class="headerlink" title="通过指针访问数组"></a>通过指针访问数组</h2><ol>
+<li>通过指针访问一维数组<ol>
+<li>定义<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">   <span class="type">int</span> a[<span class="number">4</span>]=&#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>&#125;;</span><br><span class="line">   <span class="type">int</span> *p=a;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;*(p++)&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;*p;</span><br><span class="line">   <span class="built_in">cout</span>的计算顺序从右至左，输出顺序从左至右</span><br></pre></td></tr></table></figure></li>
 </ol>
 </li>
-<li><strong>构造过程</strong><ol>
-<li>通过公式计算出某一条件下系统熵值变化（信息增益）。信息增益在决策树算法中是用来选择特征的指标，信息增益越大，则这个特征的选择性越好。即可据其大小来决定优先判断哪个特征(更靠近根节点)。</li>
-</ol>
-</li>
-<li><strong>信息增益率（C4.5）与gini系数（CART）</strong><ol>
-<li>使用背景：出现如id等信息增益巨大但无法作为判断依据的数据。</li>
-<li>信息增益：<ol>
-<li>引入属性A的内部信息,以作为当某一特征类别过多的惩罚。<img src="/10.png"></li>
-<li>本质：H(c) 是分类类别的熵， 类别越多，熵倾向于越大；同理， H(X)是变量X的Gain, 变量X的取值越多，H(X)的值也会越大， 惩罚除数越大</li>
-</ol>
-</li>
-<li>gini系数：<ol>
-<li>gini系数：<img src="/11.png"></li>
-<li>gini增益：<img src="/12.png"></li>
-</ol>
-</li>
-</ol>
-</li>
-<li><strong>剪枝</strong><ol>
-<li>原因：防止决策树完全分类所有数据，避免出现过拟合。要避免这种情况，也就需要进行剪枝，控制模型的复杂程度</li>
-<li>方法：<ol>
-<li>预剪枝：限制深度（比如指定到某一具体数值后不再进行分裂）、叶子节点个数、叶子节点样本数、信息增益量等(max_depth&#x3D; )</li>
-<li>后剪枝：<ol>
-<li>衡量标准：Cα(T)&#x3D;C(T)+α∗∣T leaf∣，C(T)&#x3D;gini*samples</li>
-<li>判断：判断分裂之后两个叶子节点之和相加与原C(T)大小，值越大代表着损失越大，也就越不好，取值的大小是取决于我们给定的α 值，α值给出的越大，模型越会控制过拟合，值较小的时候是我们希望模型取得较好的结果，过不过拟合看的不是很重要</li>
+<li>通过指针访问二维数组<ol>
+<li>指向元素的指针<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *p=&amp;a[<span class="number">0</span>][<span class="number">0</span>];</span><br></pre></td></tr></table></figure></li>
+<li>指向每一行的指针<br><strong>a[i][j]&#x3D;*(p[i]+j)</strong> <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *p=a[<span class="number">0</span>];</span><br><span class="line">不管数组a是几维的，它实际上都是一维的，a一定是数组第一个元素的地址，这里的第一个元素是指的将n维数组看做一维数组后的第一个元素,将a看做一维数组后它的每一个元素实际上是每一行，因此如果让指针变量p指向a，就相当于让p指向第<span class="number">0</span>行，而这里的第<span class="number">0</span>行并不是整形变量，因此不能让p指向a</span><br></pre></td></tr></table></figure></li>
+<li>指向整个数组的指针（数组指针方式）<ol>
+<li>a[i][j]&#x3D;*( *(p+i)+j) <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">3</span>][<span class="number">4</span>]=&#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;,&#123;<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>&#125;,&#123;<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>&#125;&#125;;</span><br><span class="line"><span class="type">int</span> (*p)[<span class="number">4</span>]=a;</span><br><span class="line">把*p用b去替换掉，就成了b[<span class="number">4</span>]，这里的b就很明显了，就是一个有<span class="number">4</span>个元素的数组的首地址.p是指向一个有四个元素的数组的首地址</span><br><span class="line">p=*p=p[<span class="number">0</span>];</span><br></pre></td></tr></table></figure></li>
 </ol>
 </li>
 </ol>
 </li>
 </ol>
-</li>
-</ol>
-<h4 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier,export_graphviz</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decision_iris</span>():</span><br><span class="line">    data = pd.read_csv(<span class="string">&quot;wdbc.data&quot;</span>,names=[<span class="string">&quot;id&quot;</span>,<span class="string">&quot;diagnose&quot;</span>,<span class="string">&quot;a1&quot;</span>, <span class="string">&quot;a2&quot;</span>, <span class="string">&quot;a3&quot;</span>, <span class="string">&quot;b1&quot;</span>, <span class="string">&quot;b2&quot;</span>, <span class="string">&quot;b3&quot;</span>, <span class="string">&quot;c1&quot;</span>, <span class="string">&quot;c2&quot;</span>, <span class="string">&quot;c3&quot;</span>, <span class="string">&quot;d1&quot;</span>, <span class="string">&quot;d2&quot;</span>, <span class="string">&quot;d3&quot;</span>, <span class="string">&quot;e1&quot;</span>, <span class="string">&quot;e2&quot;</span>, <span class="string">&quot;e3&quot;</span>, <span class="string">&quot;f1&quot;</span>, <span class="string">&quot;f2&quot;</span>, <span class="string">&quot;f3&quot;</span>, <span class="string">&quot;g1&quot;</span>, <span class="string">&quot;g2&quot;</span>, <span class="string">&quot;g3&quot;</span>, <span class="string">&quot;h1&quot;</span>, <span class="string">&quot;h2&quot;</span>, <span class="string">&quot;h3&quot;</span>, <span class="string">&quot;i1&quot;</span>, <span class="string">&quot;i2&quot;</span>, <span class="string">&quot;i3&quot;</span>, <span class="string">&quot;j1&quot;</span>, <span class="string">&quot;j2&quot;</span>, <span class="string">&quot;j3&quot;</span>])<span class="comment">#读取数据集</span></span><br><span class="line">    feature_names = [<span class="string">&quot;id&quot;</span>,<span class="string">&quot;a1&quot;</span>, <span class="string">&quot;a2&quot;</span>, <span class="string">&quot;a3&quot;</span>, <span class="string">&quot;b1&quot;</span>, <span class="string">&quot;b2&quot;</span>, <span class="string">&quot;b3&quot;</span>, <span class="string">&quot;c1&quot;</span>, <span class="string">&quot;c2&quot;</span>, <span class="string">&quot;c3&quot;</span>, <span class="string">&quot;d1&quot;</span>, <span class="string">&quot;d2&quot;</span>, <span class="string">&quot;d3&quot;</span>, <span class="string">&quot;e1&quot;</span>, <span class="string">&quot;e2&quot;</span>, <span class="string">&quot;e3&quot;</span>, <span class="string">&quot;f1&quot;</span>, <span class="string">&quot;f2&quot;</span>, <span class="string">&quot;f3&quot;</span>, <span class="string">&quot;g1&quot;</span>, <span class="string">&quot;g2&quot;</span>, <span class="string">&quot;g3&quot;</span>, <span class="string">&quot;h1&quot;</span>, <span class="string">&quot;h2&quot;</span>, <span class="string">&quot;h3&quot;</span>, <span class="string">&quot;i1&quot;</span>, <span class="string">&quot;i2&quot;</span>, <span class="string">&quot;i3&quot;</span>, <span class="string">&quot;j1&quot;</span>, <span class="string">&quot;j2&quot;</span>, <span class="string">&quot;j3&quot;</span>]</span><br><span class="line">    <span class="comment">#为数据column命名（用c++做的），并保存于feature——names</span></span><br><span class="line">    target = data.iloc[:,<span class="number">1</span>]<span class="comment">#单独引用第二行diagnose结果，作为target目标值</span></span><br><span class="line">    cancer = data.drop(<span class="string">&#x27;diagnose&#x27;</span>,axis=<span class="number">1</span>)<span class="comment">#删去第二行</span></span><br><span class="line">    x_train, x_test, y_train, y_test =train_test_split(cancer, target)<span class="comment">#数据划分</span></span><br><span class="line">    estimator = DecisionTreeClassifier(criterion=<span class="string">&quot;entropy&quot;</span>,random_state=<span class="number">5</span>)<span class="comment">#实例化预估器，以信息熵增益作为决策树选择标准</span></span><br><span class="line">    estimator.fit(x_train, y_train)<span class="comment">#进行训练</span></span><br><span class="line">    export_graphviz(estimator,out_file=<span class="string">&quot;cancer_tree.dot&quot;</span>,feature_names =feature_names)<span class="comment">#制图，存于指定路径</span></span><br><span class="line">    score = estimator.score(x_test, y_test)<span class="comment">#评估准确率</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;准确率为&#x27;</span>,score)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ ==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    decision_iris()</span><br></pre></td></tr></table></figure>
-<p><strong>获取列名</strong><br><img src="/8.png"><br><strong>准确率结果</strong><br><img src="/7.png"><br><strong>绘制决策树</strong><br><img src="/6.png"></p>
+<h2 id="定义方式"><a href="#定义方式" class="headerlink" title="定义方式"></a>定义方式</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *p;</span><br><span class="line">p = &amp;a;	  <span class="comment">//这种方式正确,变量名为p，类型为int*</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;p = %d\n&quot;</span>,p);</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> *r = &amp;a;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;r = %d\n&quot;</span>,r);<span class="comment">//这种方式正确</span></span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -302,7 +273,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag"># 作业</a>
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
           </div>
 
         
@@ -311,13 +282,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/09/19/tihai/" rel="prev" title="题海战术两面观">
-      <i class="fa fa-chevron-left"></i> 题海战术两面观
+    <a href="/2022/10/18/pandas/" rel="prev" title="pandas">
+      <i class="fa fa-chevron-left"></i> pandas
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/10/18/random-forest/" rel="next" title="random-forest">
-      random-forest <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -376,7 +344,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">决策树算法原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">解题过程</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84-amp-amp-%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88"><span class="nav-number">1.</span> <span class="nav-text">指针数组&amp;&amp;数组指针</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E7%9A%84%E8%AE%BF%E9%97%AE"><span class="nav-number">1.1.</span> <span class="nav-text">数组元素的访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E6%8C%87%E9%92%88%E8%AE%BF%E9%97%AE%E6%95%B0%E7%BB%84"><span class="nav-number">1.2.</span> <span class="nav-text">通过指针访问数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E6%96%B9%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text">定义方式</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
